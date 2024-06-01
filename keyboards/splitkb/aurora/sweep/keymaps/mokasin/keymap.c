@@ -112,3 +112,24 @@ void keyboard_pre_init_user(void) {
   // (Due to technical reasons, high is off and low is on)
   writePinHigh(24);
 }
+
+bool rgb_matrix_indicators_user(void) {
+    // keys left 0-16, back 17-22, keys right 23-39, back 40-45
+    switch(get_highest_layer(layer_state|default_layer_state)) {
+        case 4:
+            rgb_matrix_set_color(39, RGB_YELLOW);
+            break;
+        case 2:
+            rgb_matrix_set_color(15, RGB_BLUE);
+            break;
+        case 1:
+            rgb_matrix_set_color(39, RGB_BLUE);
+            break;
+        case 0:
+            rgb_matrix_set_color_all(0, 0, 0);
+            break;
+        default:
+            break;
+    }
+    return false;
+}

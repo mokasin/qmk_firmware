@@ -21,6 +21,10 @@
 /* use liatris led as caps lock indicator */
 #define LED_CAPS_LOCK_PIN 24
 #define LED_PIN_ON_STATE 0
+#define SPLIT_LAYER_STATE_ENABLE
+#define SPLIT_LED_STATE_ENABLE
+#define SPLIT_MODS_ENABLE
+
 
 /* Miryoku */
 #define BILATERAL_COMBINATIONS
