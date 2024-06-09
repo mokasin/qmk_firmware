@@ -18,6 +18,10 @@
 
 #define COMBO_TERM 16
 
+/* use liatris led as caps lock indicator */
+#define LED_CAPS_LOCK_PIN 24
+#define LED_PIN_ON_STATE 0
+
 /* Miryoku */
 #define BILATERAL_COMBINATIONS
 #define BILATERAL_COMBINATIONS_LIMIT_CHORD_TO_N_KEYS 4 /* GUI, Alt, Ctrl, Shift */
