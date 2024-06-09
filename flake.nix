@@ -19,16 +19,19 @@
           name = "qmk-firmware";
           src = ./.;
 
-          nativeBuildInputs = [ pkgs.qmk ];
+          nativeBuildInputs = [ pkgs.qmk pkgs.python3 ];
+
+          NIX_BUILD_CORES = 8;
 
           buildPhase = ''
+            patchShebangs .
             SKIP_GIT=true SKIP_VERSION=true \
-              qmk compile -e CONVERT_TO=liatris -kb ${keyboard} -km ${keymap}
+              qmk compile -c -e CONVERT_TO=liatris -j $NIX_BUILD_CORES -kb ${keyboard} -km ${keymap}
           '';
 
           installPhase = ''
             mkdir $out
-            cp -r .build/* $out/
+            cp -r .build/*.uf2 $out/
           '';
         };
 
@@ -38,7 +41,7 @@
             build() {
               BUILD_DIR=''${1:-.build}
               SKIP_GIT=true SKIP_VERSION=true \
-                qmk compile -e CONVERT_TO=liatris -kb ${keyboard} -km ${keymap}
+                qmk compile -e CONVERT_TO=liatris -j 4 -kb ${keyboard} -km ${keymap}
             }
           '';
         };
